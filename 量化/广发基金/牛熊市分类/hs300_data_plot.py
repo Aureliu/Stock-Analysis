@@ -4,7 +4,6 @@ from WindPy import w
 import numpy as np
 import matplotlib.pyplot as plt
 
-cout = open('hs300_data.txt', 'w')
 w.start();
 
 wsd_data=w.wsd("000300.SH", "amt,turn,pct_chg,pe_ttm,pb,roe,yoy_tr,yoy_or,yoyprofit,close", "2005-10-01", "2016-07-31", "Period=M;Days=Alldays;PriceAdj=F")
@@ -25,7 +24,7 @@ lable=0
 for i in range(3,nrows-1):
 	start=close[i-2]
 	end=close[i+1]
-	gain=(float(end)/start)**(0.2)
+	gain=(float(end)/start)**(float(1)/3)
 	if gain>1.03:
 		lable=2
 	elif gain<0.97:
@@ -33,16 +32,12 @@ for i in range(3,nrows-1):
 	else:
 		lable=1
 	lable_list.append(lable+1)
-	cout.write(repr(lable) + '\t' + repr(amt[i]) + '\t' + repr(turn[i]) + '\t' 
-		+ repr(pct_chg[i])  + '\t' + repr(pe_ttm[i]) + '\n')
 	#+ '\t' + repr(pb[i])  + '\t' + repr(roe[i])  + '\t' + repr(yoy_tr[i])  + '\t' + repr(yoy_or[i])  + '\t' + repr(yoyprofit[i])
-cout.flush()
-cout.close()
 
-lable_list.append(3)
+lable_list.append(1)
 
 amt_lable=[elem *1000000000000 for elem in lable_list]
-plt.figure(figsize=(8,4))
+plt.figure(1,figsize=(8,4))
 plt.plot(time,amt,label="$amt$",color="red",linewidth=2)
 plt.plot(time,amt_lable,"b--",label="$lable$")
 plt.xlabel("Time(s)")
@@ -52,7 +47,7 @@ plt.legend()
 plt.show()
 
 turn_lable=[elem *20 for elem in lable_list]
-plt.figure(figsize=(8,4))
+plt.figure(2,figsize=(8,4))
 plt.plot(time,turn,label="$turn$",color="red",linewidth=2)
 plt.plot(time,turn_lable,"b--",label="$lable$")
 plt.xlabel("Time(s)")
@@ -63,7 +58,7 @@ plt.legend()
 plt.show()
 
 pct_lable=[elem *20-40 for elem in lable_list]
-plt.figure(figsize=(8,4))
+plt.figure(3,figsize=(8,4))
 plt.plot(time,pct_chg,label="$pct_chg$",color="red",linewidth=2)
 plt.plot(time,pct_lable,"b--",label="$lable$")
 plt.xlabel("Time(s)")
@@ -74,7 +69,7 @@ plt.legend()
 plt.show()
 
 pe_lable=[elem *10 for elem in lable_list]
-plt.figure(figsize=(8,4))
+plt.figure(4,figsize=(8,4))
 plt.plot(time,pe_ttm,label="$pe_ttm$",color="red",linewidth=2)
 plt.plot(time,pe_lable,"b--",label="$lable$")
 plt.xlabel("Time(s)")

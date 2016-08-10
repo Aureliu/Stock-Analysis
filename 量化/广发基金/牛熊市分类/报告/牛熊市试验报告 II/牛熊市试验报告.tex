@@ -40,8 +40,8 @@
 
 \author{邸明轩\footnote{email: mingxuandi@163.com}\\[2ex]
 	\\[2ex]}
-\title{牛熊市试验报告 \uppercase\expandafter{\romannumeral1}}
-\date{08, 07, 2016}
+\title{牛熊市试验报告 \uppercase\expandafter{\romannumeral2}}
+\date{08, 08, 2016}
 \begin{document}
 	
 	%%%% 段落首行缩进两个字 %%%%
@@ -53,36 +53,13 @@
 	
 	\maketitle
 	
-	\section{A section}
-	以下为正文部分，可以任意替换或删除
+	\section{Criterion }
 	
-	This is some text.
+		\begin{equation}
+			\label{eq:u0}
+			\begin{aligned}
+				Score=E+ \alpha  \sum_{i=0}^{2}k_{i}p_{i}(x)logk_{i}p_{i}(x)
+			\end{aligned}
+		\end{equation}
 	
-	\subsection{ subsection 演示插入MATLAB代码}
-	各级标题效果演示
-	\subsubsection{A subsubsection}
-	演示代码插入效果：
-	\begin{lstlisting}[title=sd\_method.m, frame=shadowbox]
-	point = [9; 1];
-	H = [1, 0; 0, 9];
-	figure
-	ezcontour('x^2/2+9*y^2/2',[-9, 9, -6, 6])
-	
-	% steptest decent method
-	sdm_points = [9; 1];
-	count = 0;
-	while(norm(point) > 1e-5)
-	count = count + 1;
-	g = [point(1); 9*point(2)];
-	point = point - g'*g/(g'*H*g).*g;
-	sdm_points = [sdm_points, point];
-	end
-	hold on
-	plot(sdm_points(1, :), sdm_points(2, :),'-','LineWidth',3);
-	count
-	\end{lstlisting}
-	图片插入效果图：
-	\begin{center}
-		\includegraphics[width=1\textwidth]{1.jpeg}
-	\end{center}
 \end{document}

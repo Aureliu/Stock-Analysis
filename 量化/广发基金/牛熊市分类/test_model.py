@@ -1,12 +1,11 @@
 from WindPy import w
-from datetime import datetime, timedelta
-import xlrd
+import numpy as np
+import matplotlib.pyplot as plt
+from sklearn import linear_model
+import cPickle
 
-cout = open('hs300_data.txt', 'w')
+cout = open('test_result.txt', 'w')
 w.start();
-
-data = xlrd.open_workbook('PB' + '.xlsx')
-table = data.sheets()[0]
 
 wsd_data=w.wsd("000300.SH", "amt,turn,pct_chg,pe_ttm,pb,roe,yoy_tr,yoy_or,yoyprofit,close", "2005-10-01", "2016-07-31", "Period=M;Days=Alldays;PriceAdj=F")
 time=wsd_data.Times
@@ -22,6 +21,12 @@ pe_ttm=wsd_data.Data[3]
 close=wsd_data.Data[9]
 nrows=len(time)
 lable=0
+
+# load the classifier
+with open('lr_classifier.pkl', 'rb') as fid:
+    model_loaded = cPickle.load(fid)
+
+# generate train data
 for i in range(3,nrows-1):
 	start=close[i-2]
 	end=close[i+1]
@@ -32,8 +37,10 @@ for i in range(3,nrows-1):
 		lable=0
 	else:
 		lable=1
-	cout.write(repr(lable) + '\t' + repr(amt[i]) + '\t' + repr(turn[i]) + '\t' 
-		+ repr(pct_chg[i])  + '\t' + repr(pe_ttm[i])  + '\t' + repr(table.cell(i,3).value)  + '\t' + repr(table.cell(i,4).value) + '\n')
-	#+ '\t' + repr(pb[i])  + '\t' + repr(roe[i])  + '\t' + repr(yoy_tr[i])  + '\t' + repr(yoy_or[i])  + '\t' + repr(yoyprofit[i])
+	data=[amt[i],turn[i],pct_chg[i],pe_ttm[i]]
+	test_data=[data]
+	predict_lable=model_loaded.predict(test_data)
+	predict_prob=model_loaded.predict_proba(test_data)
+	cout.write(repr(time[i].year) + '-' + repr(time[i].month) + '\t' + repr(lable)  + '\t' + repr(predict_lable[0]) + '\t' + repr(predict_prob[0,0]) + '\t' + repr(predict_prob[0,1]) + '\t' + repr(predict_prob[0,2]) + '\n')
 cout.flush()
 cout.close()
