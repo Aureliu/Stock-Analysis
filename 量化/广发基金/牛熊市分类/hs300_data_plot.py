@@ -3,6 +3,9 @@
 from WindPy import w
 import numpy as np
 import matplotlib.pyplot as plt
+import itertools
+import matplotlib.patches as mpatches
+
 
 w.start();
 
@@ -21,6 +24,9 @@ close=wsd_data.Data[9]
 nrows=len(time)
 lable_list = [3,3,3]
 lable=0
+color_list=["g", "b", "r"]
+lable_color=[]
+time_show=[]
 for i in range(3,nrows-1):
 	start=close[i-2]
 	end=close[i+1]
@@ -31,10 +37,29 @@ for i in range(3,nrows-1):
 		lable=0
 	else:
 		lable=1
+	lable_color.append(color_list[lable])
 	lable_list.append(lable+1)
+	time_show.append(repr(time[i].year) + '-' + repr(time[i].month))
 	#+ '\t' + repr(pb[i])  + '\t' + repr(roe[i])  + '\t' + repr(yoy_tr[i])  + '\t' + repr(yoy_or[i])  + '\t' + repr(yoyprofit[i])
 
 lable_list.append(1)
+time_show.append("2016-07")
+
+# add legend to the graph.
+plt.figure(1,figsize=(20,10))
+red_patch = mpatches.Patch(color='r', label='bull')
+green_patch = mpatches.Patch(color='g', label='bear')
+blue_patch = mpatches.Patch(color='b', label='vibrate')
+plt.legend(handles=[red_patch, green_patch, blue_patch])
+
+plt.scatter(time,close,color=lable_color)
+plt.xlabel("Time(s)")
+plt.ylabel("colsing price at the end of month")
+plt.title("closing price with bull and bear label")
+for i, txt in enumerate(time_show):
+    plt.annotate(txt, (time_show[i],close[i+3]))
+plt.show()
+
 
 amt_lable=[elem *1000000000000 for elem in lable_list]
 plt.figure(1,figsize=(8,4))

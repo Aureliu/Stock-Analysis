@@ -1,0 +1,90 @@
+% Compile with XeLaTeX or LuaLaTeX
+\documentclass[10pt,a4paper]{article}
+\usepackage{xcolor}
+\usepackage{titlesec}
+\usepackage{fontspec}
+\defaultfontfeatures{Mapping=tex-text}
+\usepackage{xunicode}
+\usepackage{xltxtra}
+\usepackage{polyglossia}
+\usepackage{indentfirst}             % 段首缩进
+
+\setdefaultlanguage{english}
+% 设置字体
+\setsansfont{Calibri}
+\setmainfont[BoldFont=SimHei]{STKaiti}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+% 设置页边距
+%\usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
+% MATLAB代码插入包
+\usepackage{listings}
+\usepackage[framed,numbered,autolinebreaks,useliterate]{mcode}
+% 新定义字体
+\newfontfamily\song{SimSun}          % 宋体
+\newfontfamily\hei{SimHei}           % 黑体
+\XeTeXlinebreaklocale "zh"           % 中文断行
+
+% Define light and dark Microsoft blue colours
+\definecolor{MSBlue}{rgb}{.204,.353,.541}
+\definecolor{MSLightBlue}{rgb}{.31,.506,.741}
+% Define a new fontfamily for the subsubsection font
+% Don't use \fontspec directly to change the font
+\newfontfamily\subsubsectionfont[Color=MSLightBlue]{Times New Roman}
+% Set formats for each heading level
+\titleformat*{\section}{\Large\bfseries\sffamily\color{MSBlue}}
+\titleformat*{\subsection}{\large\bfseries\sffamily\color{MSLightBlue}\song}
+\titleformat*{\subsubsection}{\itshape\subsubsectionfont}
+
+\author{邸明轩\footnote{email: mingxuandi@163.com}\\[2ex]
+	\\[2ex]}
+\title{牛熊市试验报告 \uppercase\expandafter{\romannumeral2}：添加特征}
+\date{08, 11, 2016}
+\begin{document}
+	
+	%%%% 段落首行缩进两个字 %%%%
+	\makeatletter
+	\let\@afterindentfalse\@afterindenttrue
+	\@afterindenttrue
+	\makeatother
+	\setlength{\parindent}{2em}  %中文缩进两个汉字位
+	
+	\maketitle
+	
+	\section{Result }
+\noindent 模型：Logistic Regression分类器 + L1范数 + L2范数\\
+目前使用了月度的指标，可以理解为每月最后一个交易日的指标，所以也是稀疏的（每月一次）的日指标。\\
+
+\noindent 实验一：\\
+		特征：成交额$(amt)$，换手率$(turn)$，涨跌幅$(pct_chg)$，$ttm PE$ 四个特征。\\
+					F1准确率: 0.6127 (0.0999)\\
+
+\noindent 实验二：\\
+		特征：实验一特征 + PB + PE/PB，共六个特征。\\
+		F1准确率: 0.6232 (0.1141)\\
+		
+		
+\noindent  实验三：\\
+		特征：实验二特征 + 当季度归母净利 + 当季度归母权益 + 当季度ROE，共九个特征。(其中2016年二季度使用了一季度的数据)\\
+		F1准确率: 0.6315 (0.0840)\\
+		
+\noindent  实验四：\\
+特征：实验二特征 + 前一季度归母净利 + 前一季度归母权益 + 前一季度ROE，共九个特征。(当季无法获取当季$roe$等指标，所以使用了前一季度指标)\\
+F1准确率: 0.6312 (0.1164)\\
+
+\noindent  实验五：\\
+特征：实验四特征 + 票据转贴利率 + 人民币名义有效汇率\\
+F1准确率: 0.6366 (0.1073)\\
+
+%	\section{Criterion }
+%	
+%		\begin{equation}
+%			\label{eq:u0}
+%			\begin{aligned}
+%				Score=E+ \alpha  \sum_{i=0}^{2}k_{i}p_{i}(x)logk_{i}p_{i}(x)
+%			\end{aligned}
+%		\end{equation}
+	
+\end{document}
