@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99992 (TeX Live 2015) (preloaded format=xelatex 2016.3.4)  19 AUG 2016 18:08
+This is XeTeX, Version 3.14159265-2.6-0.99992 (TeX Live 2015) (preloaded format=xelatex 2016.3.4)  19 AUG 2016 23:48
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -989,12 +989,27 @@ Overfull \hbox (7.92pt too wide) in paragraph at lines 89--91
 
 
 Overfull \hbox (5.0pt too wide) in paragraph at lines 89--91
-\EU1/STKaiti(0)/m/n/10 标注的数据不一定准确，我们利用主观判断，手动更改数据的标签，使标注结果
+\EU1/STKaiti(0)/m/n/10 标注的数据不一定准确，我们根据主观判断，手动更改数据的标签，使标注结果
  []
 
 
 Overfull \hbox (5.0pt too wide) in paragraph at lines 89--91
-\EU1/STKaiti(0)/m/n/10 更加符合我们的要求。标注结果如下图，我们希望得到的模型的预测效果能与这
+\EU1/STKaiti(0)/m/n/10 更加符合客观要求。标注结果如下图所示，我们希望得到的模型的分类效果能与
+ []
+
+
+Overfull \hbox (9.49pt too wide) in paragraph at lines 89--91
+\EU1/STKaiti(0)/m/n/10 调整标签之后，预测的准确率有所提升，达到78.6%。虽然指标看起来不是特别很
+ []
+
+
+Overfull \hbox (5.0pt too wide) in paragraph at lines 89--91
+\EU1/STKaiti(0)/m/n/10 高，但是考虑到标签本身存在的误差，以及月度的粒度比较大，实际的预测效果
+ []
+
+
+Overfull \hbox (5.0pt too wide) in paragraph at lines 89--91
+\EU1/STKaiti(0)/m/n/10 还是很不错的。调整后标签的分布更加合理，标签分布与数据的规律更加一致，
  []
 
 [2]
@@ -1008,7 +1023,7 @@ Type  H <return>  for immediate help.
  ...                                              
                                                   
 l.93 ^^I\caption
-                {橙色为需要手动调整的数据}
+                {橙色为需要手动调整标签的数据}
 You're in trouble here.  Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
@@ -1022,30 +1037,100 @@ Type  H <return>  for immediate help.
  ...                                              
                                                   
 l.97 ^^I\caption
-                {橙色为手动调整的数据}
+                {调整标签后的数据分布}
 You're in trouble here.  Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
-File: 预测结果_调整.png Graphic file (type QTm)
-<use  "预测结果_调整.png" > [3]
-File: 预测错误的结果_调整.png Graphic file (type QTm)
- <use  "预测错误的结果_调整.png" >
-Overfull \hbox (5.0pt too wide) in paragraph at lines 107--116
-[]\EU1/STKaiti(0)/m/n/10 调整后标签的分布更加合理，标签分布与数据的规律更加一致，可以预测的
+File: 第五次调整.png Graphic file (type QTm)
+<use  "第五次调整.png" >
+
+! LaTeX Error: \caption outside float.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.101 ^^I\caption
+                 {调整标签后的数据分布}
+You're in trouble here.  Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+[3]
+File: 第五次调整误差.png Graphic file (type QTm)
+ <use  "第五次调整误差.png" >
+
+! LaTeX Error: \caption outside float.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.104 \caption
+              {黄色标注出了跟标签不同的数据点}
+You're in trouble here.  Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+Overfull \hbox (0.29pt too wide) in paragraph at lines 108--109
+[]\EU1/STKaiti(0)/m/n/10 数据自动化是一项比较麻烦的工作，可能遇到意想不到的bug，估计有两天
  []
 
-[4] (./牛熊市试验报告.aux)
+
+Overfull \hbox (1.1pt too wide) in paragraph at lines 108--109
+\EU1/STKaiti(0)/m/n/10 到两周不等的工作量。所以在开始这项工作之前，可以先看一下可以通过API自
+ []
+
+
+Overfull \hbox (5.0pt too wide) in paragraph at lines 108--109
+\EU1/STKaiti(0)/m/n/10 动获取的数据在模型上的效果怎么样。利用留一交叉验证与重新标注的数据，我
+ []
+
+
+Overfull \hbox (3.87pt too wide) in paragraph at lines 108--109
+\EU1/STKaiti(0)/m/n/10 们得到了如下图的实验结果,最终的准确率是77.0%.自动获取数据有三个很明显的
+ []
+
+
+Overfull \hbox (10.00003pt too wide) in paragraph at lines 111--112
+[]\EU1/STKaiti(0)/m/n/10 可以提取关于某一天当天、过去一周、过去一个月等不同时间粒度的信息，
+ []
+
+
+Overfull \hbox (5.0pt too wide) in paragraph at lines 114--115
+\EU1/STKaiti(0)/m/n/10 虽然较少的自动特征会损失稍许的精度，但是也带来了上述优势，如果能给自动
+ []
+
+
+Overfull \hbox (5.0pt too wide) in paragraph at lines 114--115
+\EU1/STKaiti(0)/m/n/10 获得的大量的数据添加有效的标签，相信可以进一步提升模型的性能，抵消掉特
+ []
+
+File: 四个特征第五次调整.png Graphic file (type QTm)
+<use  "四个特征第五次调整.png" >
+
+! LaTeX Error: \caption outside float.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.117 ^^I\caption
+                 {四个特征驱动的模型的分类结果。}
+You're in trouble here.  Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+[4] [5] (./牛熊市试验报告.aux)
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
  ) 
 Here is how much of TeX's memory you used:
- 17068 strings out of 493706
- 332957 string characters out of 6145770
- 387356 words of memory out of 5000000
- 20221 multiletter control sequences out of 15000+600000
+ 17070 strings out of 493706
+ 332973 string characters out of 6145770
+ 388356 words of memory out of 5000000
+ 20222 multiletter control sequences out of 15000+600000
  9186 words of font info for 67 fonts, out of 8000000 for 9000
  1328 hyphenation exceptions out of 8191
  46i,11n,74p,10396b,1639s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on 牛熊市试验报告.pdf (4 pages).
+Output written on 牛熊市试验报告.pdf (5 pages).

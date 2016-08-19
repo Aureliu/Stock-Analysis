@@ -22,7 +22,7 @@ correct_number=0
 for i in range(0,nrows):
 	label.append(table.cell(i,0).value)
 	data_point=[]
-	for j in range(1,12):
+	for j in range(1,5):
 		data_point.append(table.cell(i,j).value)
 	raw_data.append(data_point)
 	close.append(table.cell(i,12).value)
@@ -73,7 +73,7 @@ plt.figure(1,figsize=(16,8))
 red_patch = mpatches.Patch(color='r', label='bull')
 green_patch = mpatches.Patch(color='g', label='bear')
 blue_patch = mpatches.Patch(color='b', label='vibrate')
-yellow_patch = mpatches.Patch(color='y', label='prediction is wrong')
+yellow_patch = mpatches.Patch(color='y', label='wrong')
 plt.legend(handles=[red_patch, green_patch, blue_patch,yellow_patch])
 plt.scatter(time,close,color=label_color_with_wrong,linewidth=5)
 plt.plot(time,close,color='black',linewidth=1)
